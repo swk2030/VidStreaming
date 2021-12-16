@@ -1,8 +1,8 @@
 #include "Streamer.h"
 
-Streamer::Streamer(SOCKET* sock, struct sockaddr_in* addr) {
-    this->cli_sock = sock;
-    this->serv_addr = addr;
+Streamer::Streamer(Network* opaque) {
+    this->cli_sock = opaque->getServerSock();
+    this->serv_addr = opaque->getServerAddr();
 }
 
 void Streamer::sendData(std::string filename) {
@@ -22,9 +22,9 @@ void Streamer::sendData(std::string filename) {
     szFile = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     totalSendBytes = 0;
-    sendBytes = send(*cli_sock, buf, sizeof(buf), 0);
+    sendBytes = send(cli_sock, buf, sizeof(buf), 0);
     while ((sendBytes = fread(buf, sizeof(char), sizeof(buf), fp)) > 0) {
-        send(*cli_sock, buf, sendBytes, 0);
+        send(cli_sock, buf, sendBytes, 0);
         totalSendBytes += sendBytes;
     }
     printf("[Streamser] End sending a data to client\n");

@@ -1,19 +1,20 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include "Network.h"
 #include "Server.h"
 
 class Streamer {
 private:
-    SOCKET* cli_sock;
-    struct sockaddr_in* serv_addr;
+    SOCKET cli_sock;
+    struct sockaddr_in serv_addr;
     uint8_t* stream_buffer;
     long long szData;
-    long long size;
+    long long sz;
 public:
-    Streamer(SOCKET*, struct sockaddr_in*);
+    Streamer(Network*);
     void recvData() {};
     void sendData(std::string filename);    //single input
     void sendData(std::string* filenames) {};  //multiple input
 
-    long long size() { return size; }
+    long long size() { return sz; }
 };
