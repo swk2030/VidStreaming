@@ -10,7 +10,7 @@ private:
     long long szData;
     long long size;
 public:
-    Streamer(SOCKET*, struct sockaddr_in*);
+    Streamer(Network*);
     ~Streamer();
     int recvData() {};
 

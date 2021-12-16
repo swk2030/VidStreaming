@@ -1,8 +1,9 @@
 #include "Streamer.h"
 
-Streamer::Streamer(SOCKET* sock, struct sockaddr_in* addr) {
-    this->sock = sock;
-    this->serv_addr = addr;
+Streamer::Streamer(Network* opaque) {
+    SOCKET s = opaque->getServerSock();
+    this->sock = &s;
+    this->serv_addr = &opaque->getServerAddr();
     stream_buffer = new uint8_t[8192 * 8192];
 }
 

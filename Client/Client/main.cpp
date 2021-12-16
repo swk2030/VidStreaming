@@ -6,7 +6,7 @@ int main() {
     client.establish_network();
     client.cleanNetwork();
     SOCKET sock = client.getServerSock();
-    Streamer stream(&sock, &client.getServerAddr());
+    Streamer stream(&client);
 
     int sz = stream.recvData();
     uint8_t* buffer = stream.getBuffer();
