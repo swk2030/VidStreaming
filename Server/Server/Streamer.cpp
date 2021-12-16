@@ -28,4 +28,5 @@ void Streamer::sendData(std::string filename) {
         totalSendBytes += sendBytes;
     }
     printf("[Streamser] End sending a data to client\n");
+    fclose(fp);
 }
