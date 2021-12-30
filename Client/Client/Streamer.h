@@ -4,16 +4,16 @@
 
 class Streamer {
 private:
-    SOCKET* sock;
-    struct sockaddr_in* serv_addr;
+    SOCKET sock;
+    struct sockaddr_in serv_addr;
     uint8_t* stream_buffer;
     long long szData;
-    long long size;
+    long long sz;
 public:
-    Streamer(Network*);
+    Streamer(SOCKET, struct sockaddr_in);
     ~Streamer();
-    int recvData() {};
+    int recvData();
 
     uint8_t* getBuffer() { return stream_buffer; }
-    long long size() { return size; }
+    long long size() { return sz; }
 };
