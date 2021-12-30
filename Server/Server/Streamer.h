@@ -11,7 +11,7 @@ private:
     long long szData;
     long long sz;
 public:
-    Streamer(Network*);
+    Streamer(SOCKET, struct sockaddr_in);
     void recvData() {};
     void sendData(std::string filename);    //single input
     void sendData(std::string* filenames) {};  //multiple input
